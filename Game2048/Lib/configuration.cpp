@@ -1,2 +1,3 @@
-const int WindowWeight = 1000;
-const int WingowHeight = 800;
+const int WindowWeight = 600;
+const int WingowHeight = 600;
+const int BlockSize = 200; 
