@@ -1,10 +1,10 @@
-#include <SFML/Graphics.hpp>
+#include "SFML/Graphics.hpp"
 #include "Headers/myHeader.h"
 
 int main()
 {
-
     
+    RenderingScreen renderingScreen;
     
     
     
@@ -14,7 +14,8 @@ int main()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            renderScreen.DrawNewGrig();
+            
+            renderingScreen.DrawGameCell();
             
             
             if (event.type == sf::Event::Closed)

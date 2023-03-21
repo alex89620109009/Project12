@@ -1,31 +1,44 @@
 #include <SFML/Graphics.hpp>
-sf::RenderWindow window(sf::VideoMode(WindowWeight, WingowHeight), L"Новый проект", sf::Style::Default);
+#include <vector>
+sf::RenderWindow window(sf::VideoMode(WindowSize + WindowMargin, WindowSize ), L"2048", sf::Style::Titlebar | sf::Style::Close);
 class RenderingScreen {
 	public:
-		void DrawNewGrig() 
+	/*	void GameCell()
 		{
-			float position = 0;
-			sf::RectangleShape line(sf::Vector2f(600,5));
-			while (position <= WingowHeight)
+			sf::RectangleShape shape(sf::Vector2f(BlockSize,BlockSize));
+			shape.setFillColor(sf::Color(0, 0, 0));
+			shape.setPosition(sf::Vector2f(5, 5));
+			shape.setOutlineThickness(5);
+			shape.setOutlineColor(sf::Color(255, 255, 255));
+			
+		}*/
+		void DrawGameCell() {
+		
+			float positionX = 5;
+			float positionY = 0;
+			static std::vector<sf::RectangleShape> cells;
+			for (size_t i = 0; i < 16; i++)
 			{
-				line.setPosition(0, position);
-				window.draw(line);
-				position += WingowHeight / 4;
-			} 
-			line.rotate(90);
-			position = 0;
-			while (position <= WindowWeight)
+				cells.push_back(sf::RectangleShape(sf::Vector2f(WindowSize/4, WindowSize/4)));
+				cells[i].setFillColor(sf::Color(0, 0, 0));
+				cells[i].setOutlineThickness(5);
+				cells[i].setOutlineColor(sf::Color(255, 255, 255));
+			}
+			
+			for (size_t j = 0; j < 4; j++)
 			{
-				line.setPosition(position, 0);
-				window.draw(line);
-				position += WindowWeight / 4;
-			} 
+				for (size_t i = 0; i < 4; i++)
+				{
+					
+					cells[i].setPosition(sf::Vector2f(positionX, positionY));
+					positionX += WindowSize / 4;
+					window.draw(cells[i]);
+				}
+				positionY += WindowSize / 4;
+				positionX = 5;
+				
+			}
 			
-			
-			
-			
-			line.setFillColor(sf::Color(255, 147, 170));
-			
-			
+
 		}
 };
